@@ -422,6 +422,8 @@ fun main() {
 }
 
 fun selectGood() : String {
+    println()
+    Thread.sleep(3_000)
     println("Random quote of the day: ")
     val randg = mutableListOf(
         "you are an inspiring figure!",
