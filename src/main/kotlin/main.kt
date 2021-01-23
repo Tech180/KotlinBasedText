@@ -1,8 +1,13 @@
 import java.util.*
 
+private var failed = false
+private var name = Scanner(System.`in`)
+//private var realName = name.nextLine()
+private var k = 0
+
 fun main() {
 
-    var name = Scanner(System.`in`)
+    //var name = Scanner(System.`in`)
 
     println("Please enter your name: ")
 
@@ -17,17 +22,14 @@ fun main() {
 
     var count = 1
 
-    var failed = false
-
     var v = 0
     var a = 0
     var c = 0
-    var k = 0
 
     var game: Boolean = true
 
     while (game) {
-        loop@ while (realName != list[3] && (realName != "Exit" || realName !=  "exit")) {
+        loop@ while (realName != list[3] && realName != "exit") {
 
             if (count == 1) {
                 count++
@@ -364,58 +366,52 @@ fun main() {
 
         }
 
-        if (failed == true) {
-            println()
-            println("Well... I officially don't know you anymore so uh... bye")
-            println()
-            Thread.sleep(4_000)
-            println("That's your que to leave... so I'll leave instead")
-            bad()
-        } else if (failed == false) {
-            if (k >= 4) {
-                println("You are a $realName and should probably go think about your life decisions")
-                bad()
-            } else {
-                println("yes... $realName is your name!")
-                good()
-                //badQuestionMark()
+        if(realName == "exit"){
+            continue
+        }
+        else {
+            failed(realName)
+        }
+
+        fun playAgain() {
+            //To play again
+
+            var yup = 0
+
+            while (yup != 1) {
+                var rescan = Scanner(System.`in`)
+
+                var again: String
+
+                Thread.sleep(4_000)
+                println()
+                println("Do you want to play again?")
+                println()
+                println("Type yes or no")
+                println()
+
+                again = rescan.nextLine()
+
+                if (again == "yes" || again == "Yes") {
+                    count = 1
+                    failed = false
+
+                    v = 0
+                    a = 0
+                    c = 0
+                    k = 0
+                    //TODO
+                } else if (again == "no" || again == "No") {
+                    game = false
+                }
+                else {
+                    continue
+                }
             }
         }
 
-        //To play again
+        playAgain()
 
-        var yup = 0
-
-        while (yup != 1) {
-            var rescan = Scanner(System.`in`)
-
-            var again: String
-
-            Thread.sleep(4_000)
-            println()
-            println("Do you want to play again?")
-            println()
-            println("Type yes or no")
-            println()
-
-            again = rescan.nextLine()
-
-            if (again == "yes" || again == "Yes") {
-                count = 1
-                failed = false
-
-                v = 0
-                a = 0
-                c = 0
-                k = 0
-                continue
-            } else if (again == "no" || again == "No") {
-                game = false
-            }
-            else {
-                continue
-            }
-        }
     }
 
 }
@@ -534,3 +530,25 @@ fun good() {
     val good = selectGood()
     println(good)
 }
+
+fun failed(realName : String) {
+
+    if (failed == true) {
+        println()
+        println("Well... I officially don't know you anymore so uh... bye")
+        println()
+        Thread.sleep(4_000)
+        println("That's your que to leave... so I'll leave instead")
+        bad()
+    } else if (failed == false) {
+        if (k >= 4) {
+            println("You are a $realName and should probably go think about your life decisions")
+            bad()
+        } else {
+            println("yes... $realName is your name!")
+            good()
+            //badQuestionMark()
+        }
+    }
+}
+
