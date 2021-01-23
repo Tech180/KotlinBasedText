@@ -53,7 +53,7 @@ fun main() {
                             " yourself together!"
                 )
 
-                Thread.sleep(3_000)
+                Thread.sleep(1_000)
 
                 println()
 
@@ -361,6 +361,9 @@ fun main() {
                         }
                     }
                 }
+                else {
+                    realName = "Riley"
+                }
                 break@loop
             }
 
@@ -373,8 +376,10 @@ fun main() {
             failed(realName)
         }
 
+
+        //This function enables the user to play again... However I'm still struggling to to move outside of main
+        //TODO
         fun playAgain() {
-            //To play again
 
             var yup = 0
 
